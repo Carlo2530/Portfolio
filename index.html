@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prove css</title>
+    <title>luigi mottola</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
         @font-face {
             font-family: 'NeueHaasDisplayLight';
             src: url('https://raw.githubusercontent.com/Tomalt-ops/Portfolio/main/neue-haas-grotesk-display-pro-cdnfonts/NeueHaasDisplayLight.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'NeueHaasDisplayMedium';
+            src: url('https://raw.githubusercontent.com/Tomalt-ops/Portfolio/main/neue-haas-grotesk-display-pro-cdnfonts/NeueHaasDisplayMediu.ttf') format('truetype');
         }
         
         /* scrollbar */
@@ -26,7 +31,6 @@
             background: #000000;
             border-radius: 4px;
         }
-        
     </style>
 </head>
 <body>
@@ -39,7 +43,7 @@
             <a href="https://www.linkedin.com/in/luigi-mottola-8664322b0/"><i class="fab fa-linkedin-in"></i></a>
         </div>
     </div>
-
+    
     <!-- Tabella progetti -->
     <table class="projects-table">
         <thead>
@@ -64,7 +68,7 @@
                 <td>
                     <div class="project-cell">
                         DoritosXCholula - Don’t waste a moment
-                        <img src="DR_2.jpg" class="hover-image" alt="Anteprima progetto">
+                        <img src="doritos.jpg" class="hover-image" alt="Anteprima progetto">
                     </div>
                 </td>
                 <td>advertising </td>
@@ -94,7 +98,7 @@
                 <td>
                     <div class="project-cell">
                         AIDO - Un dono consapevole
-                        <img src="AID_1.jpg" class="hover-image" alt="Anteprima progetto">
+                        <img src="aido.jpg" class="hover-image" alt="Anteprima progetto">
                     </div>
                 </td>
                 <td>advertising</td>
@@ -119,7 +123,7 @@
                 </td>
                 <td>graphic design</td>
                 <td>&nbsp</td>
-            </tr>
+            </tr>          
         </tbody>
     </table>
 
@@ -133,15 +137,66 @@
     </div>
 
     <!-- About Section -->
-    <div id="about-modal" class="project-modal" style="display: none;">
+    <div id="about-modal" class="about-modal" style="display: none;">
         <div class="modal-header">
-            <h2>About</h2>
+            <h2 id="modal-title">About</h2>
             <button onclick="toggleAbout()" class="close-btn">✕</button>
         </div>
         <div id="modal-content" class="modal-body">
-            <p>Mario Rossi, graphic designer di fama internazionale, non ha dubbi: lui è il migliore al mondo. Con un portfolio che spazia da campagne pubblicitarie iconiche a loghi diventati simboli culturali, Mario si vanta di trasformare idee in capolavori visivi. "Non c'è sfida creativa che non possa affrontare," dice con un sorriso sicuro. "Ogni mio progetto è un passo avanti nel futuro del design, e il mondo lo sa." Con un ego grande quanto il suo talento, Mario Rossi non si accontenta di essere bravo: vuole essere ricordato come il designer che ha cambiato il gioco, per sempre.</p>
+            <p><br />
+            <p>Luigi Mottola, è un Art Director se non più Graphic Designer. 
+                Si è laureato in NABA, in Graphic Design & Art Direction.
+                Curiosità e spirito di osservazione, li ritiene i migliori regali dei suoi genitori, solo dopo la maglia della salute e il dialetto irpino.
+            </p>
+            <p><br />
+            <p>La continua ricerca di stimoli nuovi è strettamente collegata alla volontà di sperimentare, per arrivare a qualcosa il più possibile simile al buon gusto.
+            </p>
+            <p><br />
+            <p>Meditare, pedalare, annotare, è la sua trinità edonistica.</p>
+            <p><br />
+            <p>Luigi Mottola is an art director rather than a graphic designer. 
+                Graduated in Graphic Design & Art Direction at NABA.
+                Curiosity and spirit of observation, they bring with them the best gifts of their ancestors, after the health jersey and the Irpinian dialect.
+            </p>
+            <p><br />
+            <p>The continuous search for new stimuli is closely linked to the desire to experiment, to arrive at what is as pleasant as possible.
+            </p>Meditate, pedal, remember: it is his divine Trinity.</p>
+            <p><br />
+            <p class="titles">Participations and prizes:</p>
+            <p><br />
+            <p class="titles">2024</p>
+            <p><br />
+            <p>AI Creative Hackathon vol.1.
+                Participant.
+            </p>
+            <p><br />
+            <p>Roger Hatchuel Academy x ADCIRoger Hatchuel Academy x ADCI. Participant.
+            </p>
+            <p><br />
+            <p class="titles">2023</p>
+            <p><br />
+            <p>Design Marathon NABA. 
+                Participant.
+            </p>
+            <p><br />
+            <p>Spot School Award. 
+                Partecipant.
+            </p>
+            <p><br />
+            <p class="titles">2022</p>
+            <p><br />
+            <p>MDFF Milano Design Film Festival. Shortlist.</p>
+            <p><br />
+            <p>Co-founder & Art Director at Growy. Back to nature. (until 2024)</p>
         </div>
     </div>
+
+    <!-- Scritta in movimento -->
+     <div class="marquee-container">
+         <div class="marquee-content">
+             I love to talk but I advertise. I love to talk but I advertise. I love to talk but I advertise. I love to talk but I advertise.
+         </div>
+     </div>
 
     <meta name="description" content="Portfolio professionale di Luigi Mottola - Art Director & Graphic Designer">
     <meta property="og:image" content="link-to-your-main-image.jpg">
@@ -159,6 +214,19 @@
                 aboutModal.style.display = 'none';
             }
         }
+
+        const includeVideo = false; // Imposta a true se vuoi includere il video
+        
+        const videoHTML = `
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/lb7cmtkBxtU?si=H9m9Y0qiXt0T43_3" 
+            title="Video ciao"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        `;
         
         // Funzionalità Modal
         const projectData = {
@@ -179,30 +247,29 @@
                       <img src="aff_1RGB.jpg" alt="Anteprima 1">
                       <img src="aff_2RGB.jpg" alt="Anteprima 2">
                     </div>
-
-                    <div class="video-wrapper">
-                      <iframe src="https://www.youtube.com/embed/lb7cmtkBxtU?si=H9m9Y0qiXt0T43_3" 
-                        title="Video ciao"
-                        frameborder= "0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                      </iframe>
+                    
+                    ${includeVideo ? videoHTML : ''}
+                    
+                    <img src="aff_3RGB.jpg" style="width: 101.5%; margin: 1rem 0rem 0rem 0rem;">
+                    
+                     <div class="img-row a">
+                      
+                    <img src="Bill_alberiRGB.jpg" alt="Anteprima 1">
+                    <img src="Bill_fermataRGB.jpg" alt="Anteprima 2">
                     </div>
 
+                    <img src="Metro billRGB 2.jpg" style="width: 101.5%; margin: 1rem 0rem 0rem 0rem;">
+
+                     <div class="img-row a">
                     
-                    <img src="aff_3RGB.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="aff_1RGB.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="aff_2RGB.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="aff_3RGB.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="Bill_alberiRGB.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="Bill_fermataRGB.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="Metro billRGB 2.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="bus-station-with-illuminated-blank-banner-street.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="bill_muroRGB.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="bandella.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="Hand Held Magazine Mockup.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="Brochure_Mockup_1.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="Observo catalogo A4.pdf - Page 1 of 34.gif" style="width: 100%; margin: 1rem 0;">
+                    <img src="bus-station-with-illuminated-blank-banner-street.jpg" alt="Anteprima 3" >
+                    <img src="bill_muroRGB.jpg" alt="Anteprima 4">
+                    <img src="bandella.jpg" alt="Anteprima 5">
+                    <img src="Hand Held Magazine Mockup.jpg" alt="Anteprima 6">
+                    <img src="Brochure_Mockup_1.jpg" alt="Anteprima 7">
+                    <img src="Observo catalogo A4.pdf - Page 1 of 34.gif" alt="Anteprima 8">
+
+                      </div>
                 `
             },
             
@@ -216,15 +283,22 @@
                     <p><br />
                     <p>How irritating it is to miss moments of a game or a TV show?  Doritos Cholula is the perfect chip to bring to the Super Bowl Party.</p>
                     <p>The campaign concept aims to highlight how irritating it is to miss moments of a game, a TV show or a movie. Doritos Cholula solves this problem by directly integrating Mexican sauce inside the chip, eliminating the need for dipping.</p>
-                <img src="DR_1.jpg" style="width: 100%; margin: 1rem 0;">
-                <img src="DR_2.jpg" style="width: 100%; margin: 1rem 0;">
-                <img src="DR_3.jpg" style="width: 100%; margin: 1rem 0;">
-                <img src="DR_4.jpg" style="width: 100%; margin: 1rem 0;">
-                <img src="DR_5.jpg" style="width: 100%; margin: 1rem 0;">
-                <img src="DR_6.jpg" style="width: 100%; margin: 1rem 0;">
-                <img src="DR_7.jpg" style="width: 100%; margin: 1rem 0;">
-                <img src="DR_8.jpg" style="width: 100%; margin: 1rem 0;">
+
+                    <img src="DR_1.jpg" style="width: 50%; max-width: 800px; margin: 1rem 0;">
                 
+                    <div class="img-row a">
+                    
+                 
+                    <img src="DR_2.jpg" alt="Anteprima 2">
+                    <img src="DR_3.jpg" alt="Anteprima 3">
+                    <img src="DR_4.jpg" alt="Anteprima 4">
+                    <img src="DR_5.jpg" alt="Anteprima 5">
+                <img src="DR_6.jpg" alt="Anteprima 6">
+                <img src="DR_7.jpg" alt="Anteprima 7">
+                <img src="DR_8.jpg" alt="Anteprima 8">
+
+                </div>
+
                 <img src="DR_OOH.gif" style="width: 100%; margin: 1rem 0;">
                 <img src="DC_Moc1.gif" style="width: 100%; margin: 1rem 0;">
                 <img src="DC_MOC2.gif" style="width: 100%; margin: 1rem 0;">
@@ -259,14 +333,21 @@
                     <p>Various video postings reiterate the concept. The QR code will link to a website. By taking advantage of the layout of famous AI generators, the site will have the task of informing people about its potential.</p>
                     <p>Users themselves will choose how much and how to inform themselves through the suggestions offered</p>
                     <p>by the site.</p>
+
+                <div class="img-row a">
                     
-                <img src="AD_1.jpg" style="width: 100%; margin: 1rem 0;">
-                 <img src="AD_2.jpg" style="width: 100%; margin: 1rem 0;">
-                 <img src="AD_3.jpg" style="width: 100%; margin: 1rem 0;">
-                 <img src="AW_.jpg" style="width: 100%; margin: 1rem 0;">
-                 <img src="AW_Banner_orizz.jpg" style="width: 100%; margin: 1rem 0;">
+                 
+                 <img src="AD_1.jpg" alt="Anteprima 1">
+                 <img src="AD_2.jpg" alt="Anteprima 2">
+                 <img src="AD_3.jpg" alt="Anteprima 3">
+                      </div>
+
+                    
+               
+                 <img src="AW_.jpg" style="width: 50%; max-width: 800px; margin: 1.5rem 0;">
+                 <img src="AW_Banner_orizz.jpg" style="width: 100%; margin: -1rem 0;">
                  <img src="AW_banner mockup.png" style="width: 100%; margin: 1rem 0;">
-                 <img src="AD_app.gif" style="width: 100%; margin: 1rem 0;">
+                 <img src="AD_app.gif" style="width: 50%; max-width: 800px; margin: 1rem 0;">
 
                 `
         
@@ -282,11 +363,16 @@
                     <p><br />
                     <p>Quotes from Méliès running in the background reinforce the concept expressed in the director's film. The rhythm is accentuated by the oxymoronic music, as the soundtrack, with synths and electronic instruments, hints at a digital world that is in opposition to the film's images and phrase.</p>
 
-                    <img src="ML_1.png" style="width: 100%; margin: 1rem 0;">
-                    <img src="ML_2.png" style="width: 100%; margin: 1rem 0;">
-                    <img src="ML_3.png" style="width: 100%; margin: 1rem 0;">
-                    <img src="IMG_20180712_155215.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="nino-yang-DOIgz9_qmFI-unsplash.jpg" style="width: 100%; margin: 1rem 0;">
+                     <div class="img-row a">
+                    
+                 
+                 <img src="ML_1.png" alt="Anteprima 1">
+                 <img src="ML_2.png" alt="Anteprima 2">
+                 <img src="ML_3.png" alt="Anteprima 3">
+                      </div>
+                    
+            
+                   
                 `
             },
 
@@ -300,25 +386,68 @@
                     <p><br />
                     <p>Death will always be one, but many lives can be lived.AIDO intends to promote a campaign for greater awareness of the scientific, ethical, and social aspects concerning donations.</p>
 
-                    <img src="AID_1.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="AID_2.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="AID_3.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="AID_4.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="AID_5.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="AID_6.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="IG_1.PNG" style="width: 100%; margin: 1rem 0;">
-                    <img src="IG_2.PNG" style="width: 100%; margin: 1rem 0;">
-                    <img src="IG_3.PNG" style="width: 100%; margin: 1rem 0;">
-                    <img src="IG_4.PNG" style="width: 100%; margin: 1rem 0;">
-                    <img src="IG_5.PNG" style="width: 100%; margin: 1rem 0;">
-                    <img src="IG_6.PNG" style="width: 100%; margin: 1rem 0;">
-                    <img src="ST_1.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="ST_2.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="ST_3.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="ST_4.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="AID_MOC1.gif" style="width: 100%; margin: 1rem 0;">
-                    <img src="AID_MOC2.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="AID_MOC3.jpg" style="width: 100%; margin: 1rem 0;">
+
+                    
+                     <div class="img-row a">
+                    
+                 
+                 <img src="AID_1.jpg" alt="Anteprima 1">
+                 <img src="AID_2.jpg" alt="Anteprima 2">
+                 <img src="AID_3.jpg" alt="Anteprima 3">
+                 <img src="AID_4.jpg" alt="Anteprima 4">
+                      </div>
+
+
+
+                     <div class="img-row a">
+                    
+                 
+                 <img src="AID_5.jpg" alt="Anteprima 1">
+                 <img src="AID_6.jpg" alt="Anteprima 2">
+                 
+                      </div>
+
+
+                      
+                     <div class="img-row a">
+                    
+                 
+                 <img src="IG_1.PNG" alt="Anteprima 1">
+                 <img src="IG_2.PNG" alt="Anteprima 2">
+                <img src="IG_3.PNG" alt="Anteprima 3">
+                 
+                      </div>
+
+      <div class="img-row a">
+                    
+                 
+                 <img src="IG_4.PNG" alt="Anteprima 1">
+                 <img src="IG_5.PNG" alt="Anteprima 2">
+                <img src="IG_6.PNG" alt="Anteprima 3">
+                 
+                      </div>
+
+
+                 <div class="img-row a">
+                    
+                 
+                 <img src="ST_1.jpg" alt="Anteprima 1">
+                 <img src="ST_2.jpg" alt="Anteprima 2">
+                <img src="ST_3.jpg" alt="Anteprima 3">
+                <img src="ST_4.jpg" alt="Anteprima 4">
+                 
+                      </div>
+
+                 <img src="AID_MOC1.gif" style="width: 100%; margin: 1rem 0;">
+
+                        <div class="img-row a">
+                    
+                 <img src="AID_MOC2.jpg" alt="Anteprima 1">
+                <img src="AID_MOC3.jpg" alt="Anteprima 2">
+                
+                 
+                      </div>
+
                 `
             },
             
@@ -327,14 +456,24 @@
                 content: `
                     <p><br />
                     
-                    <p>Il focus del progetto era comunicare la dualità tra il mondo macro, lo spazio e il micro, il mondo terrestre. Una associazione visiva psichedelica e confusionaria che spiega con precisione quanto siano mondi</p>
-                     <p>simili e comunicanti.</p>
+                    <p>"Unknown Unknowns" è la mostra centrale della 23ª Esposizione Internazionale, curata dall'astrofisica Ersilia Vaudo. Esplora ciò che "non sappiamo di non sapere" in campi come città, oceani, genetica e astrofisica, attraverso oltre cento opere di artisti, designer e ricercatori. Un’esperienza multidisciplinare che sfida la nostra percezione del mondo.</p>
+                    <p>Il focus del progetto ZOOM +/- è comunicare la dualità tra il mondo macro, lo spazio e il micro, il mondo terrestre. Una associazione visiva psichedelica e confusionaria che spiega con precisione quanto siano mondi simili e comunicanti.</p>
                     
                     <p><br />
-                    <p>The focus of the project was to communicate the duality between the macro world, space, and the micro, the terrestrial world. A psychedelic and confusing visual association that precisely explains how similar and communicating worlds they are.</p>
-
-                    <img src="nino-yang-DOIgz9_qmFI-unsplash.jpg" style="width: 100%; margin: 1rem 0;"> <img src="IMG_20180712_155215.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="nino-yang-DOIgz9_qmFI-unsplash.jpg" style="width: 100%; margin: 1rem 0;">
+ 
+                    <p>"Unknown Unknowns" is the central exhibition of the 23rd International Exhibition, curated by astrophysicist Ersilia Vaudo. It explores what "we don't know we don't know" in fields such as cities, oceans, genetics and astrophysics, through over one hundred works by artists, designers and researchers.</p>
+                    <p>A multidisciplinary experience that challenges our perception of the world.</p>
+                    <p>The focus of the "ZOOM +/-" project is to communicate the duality between the macro world, space, and the micro, the terrestrial world.</p>
+                    <p>A psychedelic and confusing visual association that explains precisely how similar and communicating worlds are.</p>
+                  
+                    <div class="video-wrapper">
+                      <iframe src="https://www.youtube.com/embed/k_MVqqTURcA?si=f82Ipf1cNG6MWIwH"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                      </iframe>
+                    </div>
+        
                 `
             },
             
@@ -347,27 +486,58 @@
 
                      <p>Outpump's WALLCOME X Porta Venezia Design District 2024.</p>
 
-                    <img src="OT.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="OT_moc1.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="OT_moc2.jpg" style="width: 100%; margin: 1rem 0;">
+
+                    <img src="OT.jpg" style="width: 50%; max-width: 800px; margin: 1rem 0;"> 
+
+                    <div class="img-row a">
+                    
+                     <img src="OT_moc1.jpg" alt="Anteprima 1">
+                    <img src="OT_moc2.jpg" alt="Anteprima 2">
+                    
+                     
+                    </div>
+
+
                     <img src="OT_moc3.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="OT_moc4.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="OT_moc5.jpg" style="width: 100%; margin: 1rem 0;">
+                     <div class="img-row a">
+                    
+                     <img src="OT_moc4.jpg" alt="Anteprima 1">
+                    <img src="OT_moc5.jpg" alt="Anteprima 2">
+                  
+                    </div>
+                    
+        
 
                           <p>Top 100 in Fight for Kindness 2024 contest.</p>
-                    <img src="FK_.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="FK_moc1.png" style="width: 100%; margin: 1rem 0;">
-                    <img src="FK_moc2.png" style="width: 100%; margin: 1rem 0;">
+                    <img src="FK_.jpg" style="width: 70%; max-width: 800px; margin: 1rem 0;">
+
+
+                     <div class="img-row a">
+                    
+                     <img src="FK_moc1.png" alt="Anteprima 1">
+                    <img src="FK_moc2.png" alt="Anteprima 2">
+                  
+                    </div>
+
 
                     <p>Short film poster for Noelle. In nessun posto.</p>
-                    <img src="NOELLE.jpg" style="width: 100%; margin: 1rem 0;">
+                    <img src="NOELLE.jpg" style="width: 70%; max-width: 800px; margin: 1rem 0;">
 
                     <p>Poster for SPRINT 2022.</p>
-                    <img src="SPRINT.jpg" style="width: 100%; margin: 1rem 0;">
+                    <img src="SPRINT.jpg" style="width: 70%; max-width: 800px; margin: 1rem 0;">
                     
                     <p>Interactive book covers. </p>
-                    <img src="IMG_20180712_155215.jpg" style="width: 100%; margin: 1rem 0;">
-                    <img src="IMG_20180712_155215.jpg" style="width: 100%; margin: 1rem 0;">
+
+                     <div class="img-row a">
+
+                    <img src="FAR_1.gif" alt="Anteprima 1">
+                    <img src="FAR_2.gif" alt="Anteprima 2">
+                    <img src="FAR_3.gif" alt="Anteprima 3">
+                    
+                
+                    </div>
+                    
+                
                 `
             }
         };
@@ -376,8 +546,6 @@
             const modal = document.getElementById('project-modal');
             const content = document.getElementById('modal-content');
             const modalTitle = document.getElementById('modal-title');
-
-            // Se la modal è già aperta e si clicca lo stesso progetto, chiudila
             if (modal.style.display === 'block' && currentProjectId === projectId) {
                 closeModal();
                 currentProjectId = null;
@@ -402,7 +570,7 @@
             currentProjectId = null;
         }
 
-        /* # */
+        /* riposizionamento immagini */
         document.querySelectorAll('.project-row').forEach(row => {
             row.addEventListener('mouseenter', function() {
                 const hoverImg = this.querySelector('.hover-image');
@@ -412,33 +580,27 @@
                 const rowRect = this.getBoundingClientRect();
                 const imgHeight = hoverImg.offsetHeight;
                 const imgWidth = hoverImg.offsetWidth;
-                
+
                 // Calcola la posizione verticale ideale (centro della riga)
                 let idealTop = rowRect.top + rowRect.height / 2 - imgHeight / 2;
-                let idealLeft = rowRect.right; // Partiamo posizionando l'immagine a destra della riga
-                const minTop = 20;
-                const maxTop = window.innerHeight - imgHeight - 20;
-                const adjustedTop = Math.max(minTop, Math.min(idealTop, maxTop));
-                
-                // Imposta dei margini di sicurezza (ad es. 20px dal bordo)
-                const margin = 20;
+                const marginTop = 210; // Margine minimo dal bordo superiore
+                // "Clampa" idealTop affinché non sia inferiore a marginTop e non superi (viewport height - imgHeight - marginTop)
+                const adjustedTop = Math.min(
+                    Math.max(idealTop, marginTop),
+                    window.innerHeight - imgHeight - marginTop
+                );
 
-                // Regola la posizione verticale per far sì che l'immagine non esca in alto o in basso
-                if (idealTop < margin) {
-                    idealTop = margin;
-                } else if (idealTop + imgHeight > window.innerHeight - margin) {
-                    idealTop = window.innerHeight - imgHeight - margin;
-                }
-                
-                // Se l'immagine uscisse fuori dal viewport, la riposiziona
+                // Calcola la posizione orizzontale ideale
+                let idealLeft = rowRect.right; 
+                const margin = 20;
                 if (idealLeft + imgWidth > window.innerWidth - margin) {
                     idealLeft = window.innerWidth - imgWidth - margin;
                 }
-                
-                // Applica le nuove impostazioni in modalità fixed
+               const offsetOrizzontale = 500;
+                                            
                 hoverImg.style.position = 'fixed';
-                hoverImg.style.top = (adjustedTop + 20) + 'px';
-                hoverImg.style.left = (idealLeft - 500) - 'px';
+                hoverImg.style.top = adjustedTop + 'px';
+                hoverImg.style.left = (idealLeft - offsetOrizzontale) - 'px';
                 hoverImg.style.display = 'block';
             });
             
