@@ -1,5 +1,5 @@
 * {
-    color: #000000;
+    /* color: #000000; */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -17,20 +17,21 @@ body {
 /* Header */
 .header {
     display: grid;
-    grid-template-columns: 40% 50% 10%;
+    grid-template-columns: 52% 38% 10%;
     width: 100%;
     padding: 0rem 0.5rem 0rem 0.5rem;
     position: fixed;
     top: 0;
-    background: white;
     z-index: 1000;
+    mix-blend-mode: difference;
+    color: white;
 }
         
 .header div {
     display: flex;
     align-items: center;
-    font-weight: 700;
-    font-size: 1.2rem;
+    font-weight: 300;
+    font-size: 1rem;
 }
 
 /* Allineamento specifico per le colonne */
@@ -38,12 +39,14 @@ body {
     text-align: left;
     justify-content: flex-start;
     padding-left: 0rem;
+    font-style: italic;
 }
 
 .header .about {
     justify-content: left;
-    padding-left: 6.2rem;
+    padding-left: 0rem;
     cursor: pointer;
+    font-style: italic;
 }
 
 .header .social-links {
@@ -57,55 +60,63 @@ body {
 }
 
 .header .social-links a {
-    font-size: 1.4rem;
     position: relative;
-    color: #000000 !important;
+    color: #ffffff !important;
     text-decoration: none;
 }
 
 /* Tabella progetti */
 .projects-table {
     table-layout: fixed;
-    margin-top: 1rem; /* distanza tra header e titoli PROJECT TYPE */
     width: 100%;
-    padding: 0rem 0.5rem 0rem 0.5rem;
-    font-family: 'NeueHaasDisplayMedium', sans-serif;
+    margin-top: 1rem;
+    color: none;
+    border-collapse: collapse;
+    border: none;
 }
 
 .projects-table th {
+    font-family: 'NeueHaasDisplayMedium', sans-serif !important;
     letter-spacing: 0.05em;
     font-size: 0.9rem;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem !important;
 }
 
 .projects-table th:nth-child(1),
 .projects-table td:nth-child(1) {
-    width: 50%; /* da commentare se si vuole dividere in 3 parti uguali */
+    width: 50%; 
     text-align: left;
+    padding-left: 0.5rem;
 }
         
 .projects-table th:nth-child(2),
 .projects-table td:nth-child(2) {
-    width: 50%; /* da commentare se si vuole dividere in 3 parti uguali */
+    width: 45%; 
     text-align: left;
-    padding-left: 0.6rem;
+    padding-left: 2rem;
+    mix-blend-mode: difference;
+    color: white;
+    z-index: 1950;   
 }
 
 .projects-table th:nth-child(3),
 .projects-table td:nth-child(3) {
-    width: 0%; /* da commentare se si vuole dividere in 3 parti uguali */
+    width: 5%; 
     text-align: right;
+    border: none !important;
+    outline: none;
 }
 
 .projects-table th, 
 .projects-table td,
 .projects-table div {
-    padding: 0.75rem 0rem;
+    padding: 0.45rem 0rem;
     text-align: left;
     cursor: pointer;
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-weight: 400;
+    font-size: 2rem;
     position: relative;
+    font-family: 'NeueHaasDisplayMedium', sans-serif;
 }
 
 .project-row:hover {
@@ -116,27 +127,24 @@ body {
     position: relative; /* Crea un contesto per il posizionamento assoluto */
 }
 
-.project-cell:hover .hover-image {
-    display: block;
-    animation: image-appear 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
 /* Modal dettagli */
 .project-modal {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-40%, -50%);
+    transform: translate(-30%, -50%);
     width: 60%;
-    max-height: 80vh;
+    height: auto; /* Permette al modal di espandersi in altezza */
+    max-height: 100vh; /* Aumenta da 80vh a 90vh (o altro valore) */
+    min-height: 100vh; /* Altezza minima garantita */
     background: white;
     z-index: 2000;
-    padding: 0rem 0rem 2rem 0rem;
+    padding: 0rem 0rem 0rem 0rem; /* Aggiungi padding superiore/inferiore */
     box-shadow: 0 0 0px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
 }
-
+    
 .project-modal button {
     color: #000000 !important;
     background: none !important;
@@ -147,7 +155,7 @@ body {
     font-size: 1.2rem !important;
     position: sticky; /* L'header rimane fisso rispetto al contenitore */
     top: 35px;
-    right: 30px;
+    right: -600px;
     transition: all 0.3s;
     z-index: 2001;
 }
@@ -170,22 +178,31 @@ body {
 
 .modal-body {
     overflow-y: auto;
-    max-height: calc(80vh - 120px);
+    max-height: calc(100vh - 10px);
     padding: 0rem 2rem 2rem 2rem;
     flex-grow: 1; /* Occupa lo spazio rimanente e diventa scrollabile se il contenuto supera lo spazio */
 }
 
+.titles {
+    font-family: 'NeueHaasDisplayMedium', sans-serif; /* Sostituisci con il font che preferisci */
+    font-size: 1.2rem; /* Ingrandisci leggermente il testo */
+    /* font-weight: bold; /* Se vuoi renderlo più evidente */
+    /* color: #000000; /* Cambia colore se necessario */
+    /* text-transform: uppercase; /* Se vuoi le lettere maiuscole */
+}
+    
 /* hover image */
 .hover-image {
     display: none;
     position: absolute; 
     max-width: 300px;
     max-height: auto;
-    z-index: 1001;
+    /* z-index: 1001; */
+    z-index: 9; /* per mix-blend difference */
     pointer-events: none;
     object-fit: contain;
     top: 55%;
-    left: 95%;
+    left: 105%;
     transform: translate(-330%, -50%);
 }
 
@@ -263,36 +280,41 @@ body {
 /* About Section */
 .about-modal {
     display: none; /* Nascosto di default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-30%, -50%);
+    width: 60%;
+    height: auto; /* Permette al modal di espandersi in altezza */
+    max-height: 95vh; /* Aumenta da 80vh a 90vh (o altro valore) */
+    min-height: 95vh; /* Altezza minima garantita */
+    background: white;
+    z-index: 2000;
+    padding: 0rem 0rem 0rem 0rem; /* Aggiungi padding superiore/inferiore */
+    box-shadow: 0 0 0px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
 }
 
-.about-modal h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    text-align: center;
+.about-modal button {
+    color: #000000 !important;
+    background: none !important;
+    border: 0px !important;
+    border-radius: 0%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem !important;
+    position: sticky; /* L'header rimane fisso rispetto al contenitore */
+    top: 35px;
+    right: -600px;
+    transition: all 0.3s;
+    z-index: 2002;
 }
 
-.about-modal .modal-content {
-    max-width: 600px;
-    padding: 40px;
-    text-align: justify;
-    line-height: 1.8;
-}
-
-.about-content {
-    display: none;
-    padding: 6rem 2rem;
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: justify;
-    hyphens: auto; /* Divisione automatica delle parole */
-    max-width: 800px; /* Larghezza ottimale per la leggibilità */
-    line-height: 1.5; /* Interlinea */
-    text-justify: inter-word; /* Migliora la distribuzione degli spazi */
-    word-spacing: -0.1em; /* Compatta leggermente gli spazi tra le parole */
-}
-
-.about-content p {
-    margin-bottom: 1.5rem;
+.about-modal button:hover {
+    background: #000000 !important;
+    color: #ffffff !important;
+    z-index: 2001;
 }
 
 .close-btn {
@@ -303,28 +325,11 @@ body {
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    padding: 5px;
+    padding: 0px;
 }
 
-
-/* project table*/
-.projects-table th:nth-child(2),
-.projects-table td:nth-child(2) {
-    padding-left: 2rem; /* Spaziatura uniforme */
-}
-
-/* Animazione modale */
-.project-modal {
-    animation: modalFade 0.3s ease;
-    z-index: 1001; /* Sopra l'header */
-}
-
-@keyframes modalFade {
-    from { opacity: 0; transform: translate(-50%, -55%); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
-}
-
- .video-wrapper {
+/* Video */
+.video-wrapper {
         position: relative;
         width: 100%;
         padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -340,6 +345,36 @@ body {
         border: none;
     }
 
+/* Scritta in loop */
+.marquee-container {
+    /*transform: translate(0vh, 2vh);*/
+    width: 100%;
+    height: 20rem;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    background: #ffffff; /* Sfondo opzionale */
+    padding: 112px 0;
+}
+
+.marquee-content {
+    display: inline-block;
+    position: absolute;
+    animation: marquee 10s linear infinite;
+    font-size: 7rem;
+    color: #000;
+    font-weight: bold;
+}
+
+@keyframes marquee {
+    0% { left: -200%; }
+    100% { left: 100%; }
+}
+/*
+@keyframes modalFade {
+    from { opacity: 0; transform: translate(-50%, -55%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}*/
 
 /* Responsive Mobile Design */
 @media (max-width: 768px) {
@@ -358,19 +393,19 @@ body {
         grid-template-columns: 30% 50% 20% !important;
         grid-template-areas: 
             "name about social";
-        padding: 1rem 1rem 0rem 1rem !important;
+        padding: 0.5rem 0.5rem 0rem 0.5rem !important;
         z-index: 1000;
     }
 
     .header .name {
         grid-area: name;
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .header .about {
         grid-area: about;
-        text-align: center;
-        padding: 1rem 0;
+        justify-content: center;
+        padding: 0rem;
         font-size: 0.9rem;
     }
 
@@ -380,20 +415,37 @@ body {
     }
     
     .header .social-links a {
-        font-size: 1.2rem;
+        font-size: 0.9rem;
     }
 
     .projects-table {
-        margin-top: 5rem !important;
+        margin-top: 2rem !important;
     }
 
     .projects-table th, 
     .projects-table td {
         padding: 0rem;
-        font-size: 0.9rem;
+        font-size: 1rem;
+    }
+
+    .projects-table th:nth-child(2),
+    .projects-table td:nth-child(2) {
+        text-align: right;
+        padding-left: 0rem;
+    }
+
+    .projects-table th, 
+    .projects-table td,
+    .projects-table div {
+        font-size: 1rem;
+        font-family: 'NeueHaasDisplayMedium', sans-serif;
     }
 
     .project-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 100% !important;
         max-height: 80vh;
         padding: 0rem 0rem 2rem 0rem;
@@ -412,13 +464,3 @@ body {
         justify-content: center;
         gap: 1.5rem;
     }
-
-    #about-modal .modal-content {
-        padding: 5px;
-        font-size: 1rem;
-    }
-    
-    #about-modal h2 {
-        font-size: 1.8rem;
-    }
-}
