@@ -590,17 +590,10 @@
                     window.innerHeight - imgHeight - marginTop
                 );
 
-                // Calcola la posizione orizzontale ideale
-                /* let idealLeft = rowRect.center; 
-                const margin = 20;
-                if (idealLeft + imgWidth > window.innerWidth - margin) {
-                    idealLeft = window.innerWidth - imgWidth - margin;
-                } */
-               const offsetOrizzontale = 500;
+                /* const offsetOrizzontale = 500; */
                                             
                 hoverImg.style.position = 'fixed';
                 hoverImg.style.top = adjustedTop + 'px';
-                /* hoverImg.style.left = (idealLeft - offsetOrizzontale) - 'px'; */
                 hoverImg.style.display = 'block';
             });
             
