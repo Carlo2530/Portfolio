@@ -227,7 +227,7 @@ body {
     object-fit: cover;
 }
 
-/* Sezione Home hero */
+/* Sezione Home hero
 #home {
     text-align: left;
     padding: 8rem 2rem 4rem;
@@ -247,9 +247,9 @@ body {
     font-size: 1.5rem;
     color: #666;
     max-width: 600px;
-}
+} */
 
-/* Sezioni About/Portfolio */
+/* Sezioni About/Portfolio 
 .section {
     padding: 6rem 2rem;
     max-width: 1200px;
@@ -260,9 +260,9 @@ body {
     font-size: 2.5rem;
     margin-bottom: 3rem;
     color: #000;
-}
+} */
 
-/* Gallery Portfolio minimalista */
+/* Gallery Portfolio minimalista
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -275,7 +275,7 @@ body {
     border-radius: 12px;
     padding: 1.5rem;
     transition: transform 0.3s, box-shadow 0.3s;
-}
+} */
 
 /* About Section */
 .about-modal {
@@ -296,7 +296,7 @@ body {
     flex-direction: column;
 }
 
-.about-modal button {
+/* .about-modal button {
     color: #000000 !important;
     background: none !important;
     border: 0px !important;
@@ -304,7 +304,7 @@ body {
     width: 30px;
     height: 30px;
     font-size: 1.2rem !important;
-    position: sticky; /* L'header rimane fisso rispetto al contenitore */
+    position: sticky; 
     top: 35px;
     right: -600px;
     transition: all 0.3s;
@@ -315,7 +315,7 @@ body {
     background: #000000 !important;
     color: #ffffff !important;
     z-index: 2001;
-}
+} */
 
 .close-btn {
     position: absolute;
@@ -370,11 +370,6 @@ body {
     0% { left: -200%; }
     100% { left: 100%; }
 }
-/*
-@keyframes modalFade {
-    from { opacity: 0; transform: translate(-50%, -55%); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
-}*/
 
 /* Responsive Mobile Design */
 @media (max-width: 768px) {
@@ -454,13 +449,4 @@ body {
     .project-modal button {
         top: 0px !important;
         right: -170px !important;
-    }
-
-    .section {
-        padding: 4rem 1.5rem;
-    }
-
-    nav ul {
-        justify-content: center;
-        gap: 1.5rem;
     }
