@@ -227,55 +227,11 @@ body {
     object-fit: cover;
 }
 
-/* Sezione Home hero
-#home {
-    text-align: left;
-    padding: 8rem 2rem 4rem;
-    min-height: auto;
-    max-width: 1200px;
-    margin: 0 auto;
-}
 
-#home h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #000;
-}
-
-#home p {
-    font-size: 1.5rem;
-    color: #666;
-    max-width: 600px;
-} */
-
-/* Sezioni About/Portfolio 
-.section {
-    padding: 6rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: #000;
-} */
-
-/* Gallery Portfolio minimalista
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.item {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: transform 0.3s, box-shadow 0.3s;
-} */
+.horizontal-image {
+    width: 101.5%;
+    margin: 1rem 0rem 0rem 0rem;
+} 
 
 /* About Section */
 .about-modal {
@@ -296,7 +252,7 @@ body {
     flex-direction: column;
 }
 
-/* .about-modal button {
+.about-modal button {
     color: #000000 !important;
     background: none !important;
     border: 0px !important;
@@ -315,7 +271,7 @@ body {
     background: #000000 !important;
     color: #ffffff !important;
     z-index: 2001;
-} */
+}
 
 .close-btn {
     position: absolute;
@@ -330,24 +286,23 @@ body {
 
 /* Video */
 .video-wrapper {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        margin: 1rem 0;
-    }
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    margin: 1rem 0;
+}
 
 .video-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
 
 /* Scritta in loop */
 .marquee-container {
-    /*transform: translate(0vh, 2vh);*/
     width: 100%;
     height: 20rem;
     overflow: hidden;
