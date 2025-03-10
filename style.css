@@ -273,6 +273,24 @@ body {
     z-index: 2001;
 }
 
+.about-header {
+    position: sticky; /* L'header rimane fisso rispetto al contenitore */
+    top: 0;
+    background: white; /* Assicura che l'header non sia trasparente */
+    z-index: 10;
+    padding: 0.3rem 1.5rem 0rem 1.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about-body {
+    overflow-y: auto;
+    max-height: calc(100vh - 10px);
+    padding: 0rem 2rem 2rem 2rem;
+    flex-grow: 1; /* Occupa lo spazio rimanente e diventa scrollabile se il contenuto supera lo spazio */
+}
+
 .close-btn {
     position: absolute;
     top: 20px;
