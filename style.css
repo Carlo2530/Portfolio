@@ -1,1 +1,110 @@
+* {
+    color: #000000;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'NeueHaasDisplayLight', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
 
+body {
+    background-color: #111111;
+    color: #ffffff;
+    scroll-behavior: smooth; /* Scrolling fluido */
+}
+
+/* Header */
+.header {
+    display: grid;
+    grid-template-columns: 30% 39% 30%;
+    width: 60vw;
+    padding: 2rem 2rem 0rem 2rem;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+}
+        
+.header div {
+    display: flex;
+    z-index: 99;
+    align-items: center;
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+/* Allineamento specifico per le colonne */
+.header .name {
+    text-align: left;
+    justify-content: flex-start;
+    padding-left: 0rem;
+    font-style: italic;
+}
+
+.header .about {
+    justify-content: left;
+    padding-left: 0rem;
+    cursor: pointer;
+    font-style: italic;
+}
+
+.header .social-links {
+    display: flex;
+    text-align: right;
+    gap: 0.7rem; /* Spaziatura */
+    justify-content: flex-end; 
+    width: 100%;
+    padding-right: 0rem;
+    width: 100%;
+    transform: translate(0rem, 0.1rem);
+}
+
+.header .social-links a {
+    position: relative;
+    color: #000000 !important;
+    text-decoration: none;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 99;
+    border-radius: 1.25rem;
+    transform: translateX(-50%) translateY(1.45rem);
+    width: 60vw; /* Copre l'intera larghezza della viewport */
+    height: 2.5rem; /* Altezza */
+    background: rgb(200, 200, 200);
+    pointer-events: none; /* Permette di interagire con gli elementi sottostanti */
+}
+
+.project-image {
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(0%);
+    border-radius: 0.3rem;
+    object-fit: cover;
+}
+
+.body-container-media {
+    width: 100%;
+    height: 100%;
+    height: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 0rem 2rem;
+}
+
+.body-container-media img {
+    width: 100%;
+    height: 90vh;
+    border-radius: 0.3rem;
+    object-fit: cover;
+}
