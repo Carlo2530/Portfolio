@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marangoni Carlo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Fjalla+One&family=Taviraj:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <div class="home">
+        <a href="../" class="nav-link">H</a>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <a href="/about/" class="nav-link">About</a>
+        <a href="../projects/" class="nav-link">Projects</a>
+        <a href="../modeling/" class="nav-link">Modeling</a>
+        <a href="../contact/" class="nav-link">Contact</a>
+        <div class="social-links">
+            <a href="https://www.instagram.com/carlo.marangoni/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/luigi-mottola-8664322b0/"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+    
+    <div class="home-container">
+        <div class="title">About</div>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messaggio iniziale -->
+            <div class="message other">
+                <div>Ciao! Sono Carlo, ho pensato che mi potessi fare delle domande. Scegline una:</div>
+            </div>
+
+            <!-- Domande iniziali -->
+            <div class="message user question-container">
+                <div class="question-item" data-id="1">Stato attuale del progetto</div>
+                <div class="question-item" data-id="2">Prossime scadenze</div>
+                <div class="question-item" data-id="3">Membri del team</div>
+                <div class="selected-question"></div>
+            </div>
+        </div>
+    </div>
+    
+<script>
+    function regolaDimensioneTesto() {
+    const container = document.querySelector('.home-container');
+    const titolo = document.querySelector('.title');
+    
+    // Reset temporaneo per misurazione accurata
+    titolo.style.fontSize = '1px';
+    
+    // Crea clone con stili reali
+    const clone = titolo.cloneNode(true);
+    clone.style.position = 'absolute';
+    clone.style.visibility = 'hidden';
+    document.body.appendChild(clone);
+    
+    // Misura larghezza a 1px
+    const testoWidth = clone.offsetWidth;
+    document.body.removeChild(clone);
+    
+    // Calcolo proporzione
+    const containerWidth = container.offsetWidth;
+    const rapporto = containerWidth / testoWidth;
+    
+    // Applica dimensione corretta
+    titolo.style.fontSize = `${rapporto}px`;
+}
+
+// Ottimizzazione eventi
+const ottimizzatoResize = () => {
+    requestAnimationFrame(regolaDimensioneTesto);
+};
+
+window.addEventListener('load', ottimizzatoResize);
+window.addEventListener('resize', ottimizzatoResize);
+
+/////////////////////////
+////// CHAT ABOUT ///////
+/////////////////////////
+const QnA = [
+    {
+    id: 1,
+    question: "Stato attuale del progetto",
+    answer: "Il progetto è completato al 75%. Le ultime modifiche UI sono in fase di testing.",
+    followUp: [
+        { id: 4, question: "Dettagli testing UI" },
+        { id: 5, question: "Rischi identificati" }
+    ]},
+    
+    {
+        id: 2,
+        question: "Prossime scadenze",
+        answer: "La prossima milestone è fissata per il 25/09. Dovremo completare il modulo di autenticazione.",
+        followUp: [
+            { id: 6, question: "Task urgenti" }
+        ]
+    },
+    
+    {
+        id: 3,
+        question: "Membri del team",
+        answer: "Il team è composto da: UX Designer, 2 Sviluppatori Frontend, 1 Backend e un Project Manager.",
+        followUp: [
+            { id: 7, question: "Contatti team" }
+        ]
+    },
+    
+    {
+        id: 4,
+        question: "Dettagli testing UI",
+        answer: "Stiamo testando la nuova libreria di componenti su diversi dispositivi e browser.",
+        followUp: []
+    },
+    
+    {
+        id: 5,
+        question: "Rischi identificati",
+        answer: "Possibile ritardo nell'integrazione con l'API di pagamento. Monitoriamo giornalmente.",
+        followUp: []
+    },
+    
+    {
+        id: 6,
+        question: "Task urgenti",
+        answer: "Priorità: completare il sistema di notifiche push e ottimizzare le query del database.",
+        followUp: []
+    },
+    
+    {
+        id: 7,
+        question: "Contatti team",
+        answer: "Puoi contattare il team via Slack nel canale #project-core. Riunioni settimanali il mercoledì.",
+        followUp: []
+    }
+];
+    
+
+
+function createTypingIndicator() {
+    const indicator = document.createElement('div');
+    indicator.className = 'typing-indicator';
+    indicator.innerHTML = `
+    <div class="message other">
+        <div class="typing-dots">
+            <div class="dot" style="animation-delay: 0s"></div>
+            <div class="dot" style="animation-delay: 0.2s"></div>
+            <div class="dot" style="animation-delay: 0.4s"></div>
+        </div>
+    </div>
+    `;
+    
+    return indicator;
+}
+
+function showAnswer(data) {
+    const answerDiv = document.createElement('div');
+    answerDiv.className = 'message other';
+    answerDiv.innerHTML = `
+    <div>${data.answer}</div>
+    `;
+    chatMessages.appendChild(answerDiv);
+    answerDiv.scrollIntoView({ behavior: 'smooth' });
+}
+
+function showFollowUpQuestions(followUps) {
+    if(followUps.length === 0) return;
+
+    const questionContainer = document.createElement('div');
+    questionContainer.className = 'message user question-container';
+    questionContainer.style.opacity = '0';
+    questionContainer.style.maxHeight = '0';
+    questionContainer.style.transform = 'translateY(20px)';
+    
+    followUps.forEach(followUp => {
+        const questionItem = document.createElement('div');
+        questionItem.className = 'question-item';
+        questionItem.textContent = followUp.question;
+        questionItem.dataset.id = followUp.id;
+        questionContainer.appendChild(questionItem);
+    });
+
+    const selectedDiv = document.createElement('div');
+    selectedDiv.className = 'selected-question';
+    questionContainer.appendChild(selectedDiv);
+
+    chatMessages.appendChild(questionContainer);
+    
+    // Animazione di entrata ritardata
+    setTimeout(() => {
+        questionContainer.style.opacity = '1';
+        questionContainer.style.maxHeight = '200px';
+        questionContainer.style.transform = 'translateY(0)';
+        questionContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 400);
+}
+
+function handleQuestionClick() {
+    const container = this.parentElement;
+    const selectedId = parseInt(this.dataset.id);
+    const questionData = QnA.find(q => q.id === selectedId);
+
+    // Animazione di chiusura della domanda
+    container.style.maxHeight = '60px';
+    container.querySelectorAll('.question-item').forEach(q => {
+        q.style.opacity = '0';
+        q.style.transform = 'translateY(-10px)';
+    });
+    
+    // Aggiorna la domanda selezionata
+    const selectedDiv = container.querySelector('.selected-question');
+    selectedDiv.textContent = this.textContent;
+    selectedDiv.style.opacity = '0';
+    selectedDiv.style.display = 'block';
+    
+    // Animazione di transizione
+    setTimeout(() => {
+        selectedDiv.style.opacity = '1';
+        container.querySelectorAll('.question-item').forEach(q => q.style.display = 'none');
+    }, 600);
+
+    // Mostra indicatore di scrittura
+    const typingIndicator = createTypingIndicator();
+    chatMessages.appendChild(typingIndicator);
+    setTimeout(() => typingIndicator.style.opacity = '1', 10);
+
+    // Mostra risposta DOPO 1 secondo
+    setTimeout(() => {
+        typingIndicator.style.opacity = '0';
+        setTimeout(() => {
+            chatMessages.removeChild(typingIndicator);
+            showAnswer(questionData);
+            
+            // Mostra follow-up DOPO la risposta (nuovo timeout)
+            setTimeout(() => {
+                showFollowUpQuestions(questionData.followUp);
+            }, 1100);
+            
+        }, 400);
+    }, 1000);
+}
+
+document.getElementById('chatMessages').addEventListener('click', function(e) {
+    if(e.target.classList.contains('question-item')) {
+        handleQuestionClick.call(e.target);
+    }
+});
+
+</script>
+</body>
+</html>

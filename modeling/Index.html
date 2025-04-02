@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marangoni Carlo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Fjalla+One&family=Taviraj:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <style>
+    
+    </style>
+</head>
+<body>
+
+    <div class="home">
+        <a href="../" class="nav-link">H</a>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <a href="../about/" class="nav-link">About</a>
+        <a href="../projects/" class="nav-link">Projects</a>
+        <a href="/modeling/" class="nav-link">Modeling</a>
+        <a href="../contact/" class="nav-link">Contact</a>
+        <div class="social-links">
+            <a href="https://www.instagram.com/carlo.marangoni/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/luigi-mottola-8664322b0/"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+    
+    <div class="home-container">
+        <div class="title">Modeling</div>
+    </div>
+
+    <!-- Filtri per griglia progetti -->
+    <div class="project-filters">
+        <button class="filter-btn active" data-filter="all">
+            <span class="filter-text">TUTTI</span>
+        </button>
+    
+        <button class="filter-btn" data-filter="modeling">
+            <span class="filter-text">MODELING</span>
+            <img src="../img/shaver_home.gif" class="filter-gif" alt="Anteprima modeling">
+        </button>
+    
+        <button class="filter-btn" data-filter="grasshopper">
+            <span class="filter-text">GRASSHOPPER</span>
+            <img src="../img/shaver_home.gif" class="filter-gif" alt="Anteprima grasshopper">
+        </button>
+
+        <button class="filter-btn" data-filter="render">
+            <span class="filter-text">RENDERING</span>
+            <img src="../img/shaver_home.gif" class="filter-gif" alt="Anteprima render">
+        </button>
+    </div>
+
+    <div class="projects-grid">
+        <!-- Progetto 1 -->
+        <div class="project-item" data-category="modeling">
+            <img src="../img/shaver.preview.png" alt="Progetto 1" class="project-image">
+            <div class="project-title">Progetto Alpha</div>
+        </div>
+
+        <!-- Progetto 2 -->
+        <div class="project-item" data-category="modeling">
+            <img src="../img/cuffiette.preview.png" alt="Progetto 2" class="project-image">
+            <div class="project-title">Progetto Beta</div>
+        </div>
+
+        <!-- Progetto 3 -->
+        <div class="project-item" data-category="grasshopper">
+            <img src="../img/shaver.preview.png" alt="Progetto 3" class="project-image">
+            <div class="project-title">Progetto Gamma</div>
+        </div>
+
+        <!-- Progetto 4 -->
+        <div class="project-item" data-category="grasshopper">
+            <img src="../img/shaver.preview.png" alt="Progetto 4" class="project-image">
+            <div class="project-title">Progetto Gamma</div>
+        </div>
+
+        <!-- Progetto 5 -->
+        <div class="project-item" data-category="render">
+            <img src="../img/shaver.preview.png" alt="Progetto 5" class="project-image">
+            <div class="project-title">Progetto Gamma</div>
+        </div>
+
+        <!-- Aggiungi altri progetti seguendo lo stesso schema -->
+    </div>
+    
+<script>
+    function regolaDimensioneTesto() {
+    const container = document.querySelector('.home-container');
+    const titolo = document.querySelector('.title');
+    
+    // Reset temporaneo per misurazione accurata
+    titolo.style.fontSize = '1px';
+    
+    // Crea clone con stili reali
+    const clone = titolo.cloneNode(true);
+    clone.style.position = 'absolute';
+    clone.style.visibility = 'hidden';
+    document.body.appendChild(clone);
+    
+    // Misura larghezza a 1px
+    const testoWidth = clone.offsetWidth;
+    document.body.removeChild(clone);
+    
+    // Calcolo proporzione
+    const containerWidth = container.offsetWidth;
+    const rapporto = containerWidth / testoWidth;
+    
+    // Applica dimensione corretta
+    titolo.style.fontSize = `${rapporto}px`;
+}
+
+// Ottimizzazione eventi
+const ottimizzatoResize = () => {
+    requestAnimationFrame(regolaDimensioneTesto);
+};
+
+window.addEventListener('load', ottimizzatoResize);
+window.addEventListener('resize', ottimizzatoResize);
+
+
+// Filtraggio progetti
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projects = document.querySelectorAll('.project-item');
+const grid = document.querySelector('.projects-grid');
+
+filterBtns.forEach(btn => {
+btn.addEventListener('click', () => {
+     // Aggiorna bottoni attivi
+     filterBtns.forEach(b => b.classList.remove('active'));
+     btn.classList.add('active');
+            
+     const filter = btn.dataset.filter;
+    
+     // Applica filtro
+    
+     projects.forEach(project => {
+         const category = project.dataset.category;
+         if (filter === 'all' || category === filter) {
+             project.classList.remove('hide');
+         } else {
+             project.classList.add('hide');
+         }
+     });
+
+     // Riordina la griglia
+     const grid = document.querySelector('.projects-grid');
+     grid.style.opacity = '0.5';
+     setTimeout(() => {
+         grid.style.opacity = '1';
+     }, 300);
+    });
+});
+
+
+// effetto fluid
+document.querySelectorAll('.filter-btn:not([data-filter="all"])').forEach(btn => {
+    const initialDimensions = {
+        width: btn.offsetWidth,
+        height: btn.offsetHeight
+    };
+
+    btn.addEventListener('mouseenter', () => {
+        btn.style.maxWidth = '300px';
+        btn.style.height = '180px';
+    });
+
+    btn.addEventListener('mouseleave', () => {
+        btn.style.maxWidth = initialDimensions.width + 'px';
+        btn.style.height = initialDimensions.height + 'px';
+    });
+});
+
+</script>
+</body>
+</html>

@@ -6,49 +6,242 @@
     <title>Marangoni Carlo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Fjalla+One&family=Taviraj:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <style>
-        @font-face {
-            font-family: 'NeueHaasDisplayLight';
-            src: url('https://raw.githubusercontent.com/Tomalt-ops/Portfolio/main/neue-haas-grotesk-display-pro-cdnfonts/NeueHaasDisplayLight.ttf') format('truetype');
-        }
 
-        @font-face {
-            font-family: 'NeueHaasDisplayMedium';
-            src: url('https://raw.githubusercontent.com/Tomalt-ops/Portfolio/main/neue-haas-grotesk-display-pro-cdnfonts/NeueHaasDisplayMediu.ttf') format('truetype');
-        }
-        
-        /* scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #ffffff;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #000000;
-            border-radius: 4px;
-        }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="header-container-media">
-            <img src="img/DC_Moc3.gif">
+
+  <!-- <div class="background-container">
+       <img src="img/Tavola disegno 1.png">
+  </div> -->
+
+  <div class="home">
+    <a href="/" class="nav-link">
+      <span class="sr-only">Home</span>
+      <div class="icon-home"></div>
+    </a>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <a href="/about/" class="nav-link">About</a>
+    <a href="/projects/" class="nav-link">Projects</a>
+    <a href="/modeling/" class="nav-link">Modeling</a>
+    <a href="/contact/" class="nav-link">Contact</a>
+    <div class="social-links">
+      <a href="https://www.instagram.com/carlo.marangoni/"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/luigi-mottola-8664322b0/"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+
+  <div class="zoom-stage">
+    <div class="zoom-element"  data-start-scale="1">
+      <div class="home-container">
+        <div class="title zoom-container">->ZOOM IN<-</div>
+      </div>
+    
+
+   
+      <div class="gif-grid">
+        <div class="gif-cell">
+            <img src="img/shaver_home.gif" class="gif-image" alt="Progetto 1">
         </div>
-        <div class="name">Marangoni Carlo</div>
-        <div class="about" onclick="toggleAbout()">About</div>
-        <div class="social-links">
-            <a href="https://www.instagram.com/tomalto/"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/luigi-mottola-8664322b0/"><i class="fab fa-linkedin-in"></i></a>
+        <div class="gif-cell">
+            <img src="img/AEROCIG.339.png" class="gif-image" alt="Progetto 2">
         </div>
+        <div class="gif-cell">
+            <img src="img/borsa.322.png" class="gif-image" alt="Progetto 3">
+        </div>
+        <div class="gif-cell">
+            <img src="img/vaso_anello_trasp.png" class="gif-image" alt="Progetto 4">
+        </div>
+        <div class="gif-cell">
+            <img src="img/cuffiette.preview.png" class="gif-image" alt="Progetto 5">
+        </div>
+        <div class="gif-cell">
+            <img src="img/ABB.415.png" class="gif-image" alt="Progetto 6">
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="zoom-element" data-start-scale="0.1">
+      <img src="img/borsa.322.png" class="media-content">
+    </div>
+      
+    <div class="zoom-element" data-start-scale="0.1">
+      <img src="img/cuffiette.preview.png" class="media-content">
     </div>
 
+    <div class="zoom-element" data-start-scale="0.1">
+        <img src="img/prova di rendering.1.gif" class="media-content">
+    </div>
+
+    <div class="zoom-element" data-start-scale="0.1">
+        <div class="card">Card 1</div>
+        <div class="card">Card 2</div>
+        <div class="card">Card 3</div>
+        <div class="card">Card 4</div>
+      </div>
+  </div>
     
 <script>
+    function regolaDimensioneTesto() {
+    const container = document.querySelector('.home-container');
+    const titolo = document.querySelector('.title');
+    
+    // Reset temporaneo per misurazione accurata
+    titolo.style.fontSize = '1px';
+    
+    // Crea clone con stili reali
+    const clone = titolo.cloneNode(true);
+    clone.style.position = 'absolute';
+    clone.style.visibility = 'hidden';
+    document.body.appendChild(clone);
+    
+    // Misura larghezza a 1px
+    const testoWidth = clone.offsetWidth;
+    document.body.removeChild(clone);
+    
+    // Calcolo proporzione
+    const containerWidth = container.offsetWidth;
+    const rapporto = containerWidth / testoWidth;
+    
+    // Applica dimensione corretta
+    titolo.style.fontSize = `${rapporto}px`;
+}
+
+// Ottimizzazione eventi
+const ottimizzatoResize = () => {
+    requestAnimationFrame(regolaDimensioneTesto);
+};
+
+window.addEventListener('load', ottimizzatoResize);
+window.addEventListener('resize', ottimizzatoResize);
+
+//rotazione immagini
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.gif-image').forEach((img, index) => {
+        // Imposta valori iniziali casuali
+        const initialRotation = (Math.random() * 20 - 10).toFixed(2); // Tra -10 e +10 gradi
+        const initialX = (Math.random() * 20 - 10).toFixed(2); // Tra -10% e +10%
+        const initialY = (Math.random() * 20 - 10).toFixed(2); // Tra -10% e +10%
+
+        // Applica le trasformazioni iniziali
+        img.style.transform = `
+            translate(${initialX}%, ${initialY}%) 
+            rotate(${initialRotation}deg)
+        `;
+
+        // Crea un'animazione unica per ogni immagine
+        img.style.animation = `
+            imageZoom 1.5s 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards,
+            individualFloat ${30 + index}s ease-in-out infinite
+        `;
+    });
+});
+
+// ZOOM DELLA HOME
+
+class ZoomManager {
+  constructor() {
+    this.elements = document.querySelectorAll('.zoom-element');
+    this.currentIndex = 0;
+    this.isAnimating = false;
+    this.init();
+    this.updateElementsPosition();
+  }
+
+  init() {
+    window.addEventListener('wheel', (e) => {
+      if(this.isAnimating) return;
+      
+      const direction = Math.sign(e.deltaY);
+      if(direction > 0 && this.currentIndex < this.elements.length - 1) {
+        this.nextElement();
+      } else if(direction < 0 && this.currentIndex > 0) {
+        this.previousElement();
+      }
+    });
+    
+    // Inizializza primo elemento
+    this.elements[0].classList.add('active', 'current');
+  }
+
+  updateElementsPosition() {
+    this.elements.forEach((el, index) => {
+      el.style.transform = `translate(-50%, -50%) scale(${index === 0 ? 1 : 0.1})`;
+      el.style.opacity = index === 0 ? 1 : 0;
+    });
+  }
+
+  nextElement() {
+    this.isAnimating = true;
+    const currentEl = this.elements[this.currentIndex];
+    const nextEl = this.elements[++this.currentIndex];
+    
+    currentEl.classList.remove('current');
+    currentEl.classList.add('exiting');
+    
+    nextEl.classList.add('active', 'entering', 'current');
+    nextEl.style.transform = 'translate(-50%, -50%) scale(0.1)';
+    nextEl.style.opacity = 0;
+
+    // Animazione
+    setTimeout(() => {
+      currentEl.style.transform = 'translate(-50%, -50%) scale(12)';
+      currentEl.style.opacity = 0;
+      
+      nextEl.style.transform = 'translate(-50%, -50%) scale(1)';
+      nextEl.style.opacity = 1;
+    }, 10);
+
+    // Fine animazione
+    currentEl.addEventListener('transitionend', () => {
+      currentEl.classList.remove('active', 'exiting');
+      this.isAnimating = false;
+    }, { once: true });
+  }
+
+  previousElement() {
+    this.isAnimating = true;
+    const currentEl = this.elements[this.currentIndex];
+    const prevEl = this.elements[--this.currentIndex];
+    
+    currentEl.classList.remove('current');
+    currentEl.classList.add('exiting');
+    
+    prevEl.classList.add('active', 'entering', 'current');
+    prevEl.style.transform = 'translate(-50%, -50%) scale(12)';
+    prevEl.style.opacity = 0;
+
+    // Animazione
+    setTimeout(() => {
+      currentEl.style.transform = 'translate(-50%, -50%) scale(0.1)';
+      currentEl.style.opacity = 0;
+      
+      prevEl.style.transform = 'translate(-50%, -50%) scale(1)';
+      prevEl.style.opacity = 1;
+    }, 10);
+
+    // Fine animazione
+    currentEl.addEventListener('transitionend', () => {
+      currentEl.classList.remove('active', 'exiting');
+      this.isAnimating = false;
+    }, { once: true });
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  new ZoomManager();
+});
+
+
+
 </script>
 </body>
 </html>
