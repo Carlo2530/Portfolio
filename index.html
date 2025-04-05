@@ -44,8 +44,6 @@
         <div class="title zoom-container">->ZOOM IN<-</div>
       </div>
     
-
-   
       <div class="gif-grid">
         <div class="gif-cell">
             <img src="img/shaver_home.gif" class="gif-image" alt="Progetto 1">
@@ -68,7 +66,6 @@
       </div>
     </div>
   
-
     <div class="zoom-element" data-start-scale="0.1">
       <img src="img/borsa.322.png" class="media-content">
     </div>
@@ -82,37 +79,37 @@
     </div>
 
     <div class="zoom-element" data-start-scale="0.1">
-        <div class="card">Card 1</div>
-        <div class="card">Card 2</div>
-        <div class="card">Card 3</div>
-        <div class="card">Card 4</div>
-      </div>
+      <div class="card">Card 1</div>
+      <div class="card">Card 2</div>
+      <div class="card">Card 3</div>
+      <div class="card">Card 4</div>
+    </div>
   </div>
     
 <script>
-    function regolaDimensioneTesto() {
-    const container = document.querySelector('.home-container');
-    const titolo = document.querySelector('.title');
+function regolaDimensioneTesto() {
+  const container = document.querySelector('.home-container');
+  const titolo = document.querySelector('.title');
     
-    // Reset temporaneo per misurazione accurata
-    titolo.style.fontSize = '1px';
+  // Reset temporaneo per misurazione accurata
+  titolo.style.fontSize = '1px';
     
-    // Crea clone con stili reali
-    const clone = titolo.cloneNode(true);
-    clone.style.position = 'absolute';
-    clone.style.visibility = 'hidden';
-    document.body.appendChild(clone);
+  // Crea clone con stili reali
+  const clone = titolo.cloneNode(true);
+  clone.style.position = 'absolute';
+  clone.style.visibility = 'hidden';
+  document.body.appendChild(clone);
     
-    // Misura larghezza a 1px
-    const testoWidth = clone.offsetWidth;
-    document.body.removeChild(clone);
+  // Misura larghezza a 1px
+  const testoWidth = clone.offsetWidth;
+  document.body.removeChild(clone);
     
-    // Calcolo proporzione
-    const containerWidth = container.offsetWidth;
-    const rapporto = containerWidth / testoWidth;
+  // Calcolo proporzione
+  const containerWidth = container.offsetWidth;
+  const rapporto = containerWidth / testoWidth;
     
-    // Applica dimensione corretta
-    titolo.style.fontSize = `${rapporto}px`;
+  // Applica dimensione corretta
+  titolo.style.fontSize = `${rapporto}px`;
 }
 
 // Ottimizzazione eventi
@@ -147,6 +144,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ZOOM DELLA HOME
 
+// Funzione di utilità per calcolare il blur in base alla scala
+function computeBlur(scale, minScale, maxScale, maxBlur) {
+  if(scale <= minScale) return 0;
+  if(scale >= maxScale) return maxBlur;
+  return ((scale - minScale) / (maxScale - minScale)) * maxBlur;
+}
+
 class ZoomManager {
   constructor() {
     this.elements = document.querySelectorAll('.zoom-element');
@@ -176,6 +180,11 @@ class ZoomManager {
     this.elements.forEach((el, index) => {
       el.style.transform = `translate(-50%, -50%) scale(${index === 0 ? 1 : 0.1})`;
       el.style.opacity = index === 0 ? 1 : 0;
+      el.style.zIndex = 1;
+      // Assicuriamoci di avere una transizione anche per il filtro (blur)
+      el.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s ease, filter 0.5s ease';
+      // Inizialmente nessun blur
+      el.style.filter = 'blur(0px)';
     });
   }
 
@@ -184,21 +193,29 @@ class ZoomManager {
     const currentEl = this.elements[this.currentIndex];
     const nextEl = this.elements[++this.currentIndex];
     
+    // Forward zoom: l'elemento corrente (che esce) deve avere z-index superiore
+    currentEl.style.zIndex = 2;
+    nextEl.style.zIndex = 1;
+    
     currentEl.classList.remove('current');
     currentEl.classList.add('exiting');
     
     nextEl.classList.add('active', 'entering', 'current');
     nextEl.style.transform = 'translate(-50%, -50%) scale(0.1)';
     nextEl.style.opacity = 0;
+    nextEl.style.filter = 'blur(0px)';
 
-    // Animazione
+    // Avvia animazione (piccolo delay per trigger CSS)
     setTimeout(() => {
-      currentEl.style.transform = 'translate(-50%, -50%) scale(12)';
+      // Il corrente aumenta fino a scala 20 (da cui verrà calcolato il blur)
+      currentEl.style.transform = 'translate(-50%, -50%) scale(10)';
       currentEl.style.opacity = 0;
-      
+      currentEl.style.filter = 'blur(2px)';
+      // Il successivo appare fino a scala 1 (senza blur in ingresso)
       nextEl.style.transform = 'translate(-50%, -50%) scale(1)';
       nextEl.style.opacity = 1;
-    }, 10);
+      nextEl.style.filter = 'blur(0px)';
+    }, 100);
 
     // Fine animazione
     currentEl.addEventListener('transitionend', () => {
@@ -212,23 +229,29 @@ class ZoomManager {
     const currentEl = this.elements[this.currentIndex];
     const prevEl = this.elements[--this.currentIndex];
     
+    // Reverse zoom: l'elemento che deve comparire (prevEl) deve avere z-index superiore
+    prevEl.style.zIndex = 2;
+    currentEl.style.zIndex = 1;
+    
     currentEl.classList.remove('current');
     currentEl.classList.add('exiting');
     
     prevEl.classList.add('active', 'entering', 'current');
+    // In reverse zoom, il prevEl parte da scala 12 (per poi decrescere)
     prevEl.style.transform = 'translate(-50%, -50%) scale(12)';
     prevEl.style.opacity = 0;
+    prevEl.style.filter = 'blur(10px)'; // partendo già sfocato
 
-    // Animazione
     setTimeout(() => {
       currentEl.style.transform = 'translate(-50%, -50%) scale(0.1)';
       currentEl.style.opacity = 0;
-      
+      // Durante il reverse, il prevEl decresce da 12 a 1.
+      // Calcoliamo il blur in modo che, quando la scala è tra 20 e 5, il blur decresce.
       prevEl.style.transform = 'translate(-50%, -50%) scale(1)';
       prevEl.style.opacity = 1;
-    }, 10);
+      prevEl.style.filter = 'blur(0px)';
+    }, 100);
 
-    // Fine animazione
     currentEl.addEventListener('transitionend', () => {
       currentEl.classList.remove('active', 'exiting');
       this.isAnimating = false;
